@@ -30,12 +30,23 @@ def YesOrNo (str):
         print("Input only yes/no")
         return 2
 
+#This function return NextCalcYes or NextCalcNo
+def NextCalc ():
+    next_calculation = input("Let's do next calculation? (yes/no): ")
+    indexNum = YesOrNo (next_calculation)
+    if (indexNum == 2):
+        return NextCalc ()
+    elif indexNum:
+        return 0
+    else:
+        return 1
+
+
 print("Select operation.")
 print("1.Add")
 print("2.Subtract")
 print("3.Multiply")
 print("4.Divide")
-
 
 while True:
     # take input from the user
@@ -65,8 +76,8 @@ while True:
 
         # break the while loop if answer is no
 
-        next_calculation = input("Let's do next calculation? (yes/no): ")
-        if YesOrNo(next_calculation):
+        endIndex = NextCalc ()
+        if not endIndex:
             break
 
     else:
