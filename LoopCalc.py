@@ -1,4 +1,7 @@
 # Program make a simple calculator
+import os
+
+f = open("C:/Users/he981/OneDrive/바탕 화면/2022학년도 2학기/오픈소스소프트웨어개발/중간과제/log/log.txt", 'a')
 
 # This function adds two numbers
 def add(x, y):
@@ -27,19 +30,30 @@ def YesOrNo (str):
     elif(newStr == "NO"):
         return 1
     else:
-        print("Input only yes/no")
+        data = "Input only yes/no"
+        print(data)
+        f.write(data + "\n")
         return 2
 
-#This function return NextCalcYes or NextCalcNo
 def NextCalc ():
     next_calculation = input("Let's do next calculation? (yes/no): ")
     indexNum = YesOrNo (next_calculation)
     if (indexNum == 2):
         return NextCalc ()
     elif indexNum:
-        return 0
+        return ReCheck ()
     else:
         return 1
+
+def ReCheck ():
+    next_calculation = input("Are you sure? (yes/no): ")
+    indexNum = YesOrNo (next_calculation)
+    if (indexNum == 2):
+        return ReCheck ()
+    elif indexNum:
+        return 1
+    else:
+        return 0
 
 
 print("Select operation.")
@@ -58,22 +72,32 @@ while True:
         num2 = float(input("Enter second number: "))
 
         if choice == '1':
-            print(num1, "+", num2, "=", add(num1, num2))
+            data = str(num1) + " + " + str(num2) + " = " + str(add(num1, num2))
+            print(data)
+            f.write(data + "\n")
 
         elif choice == '2':
-            print(num1, "-", num2, "=", subtract(num1, num2))
+            data = str(num1) + " - " + str(num2) + " = " + str(subtract(num1, num2))
+            print(data)
+            f.write(data + "\n")
 
         elif choice == '3':
-            print(num1, "*", num2, "=", multiply(num1, num2))
+            data = str(num1) + " * " + str(num2) + " = " + str(multiply(num1, num2))
+            print(data)
+            f.write(data + "\n")
 
         elif choice == '4':
             num = divide(num1, num2)
-            # except Divided by zero
             if not num:
-                print("Error! Divided by zero!")
+                data = "Error! Divided by zero!"
+                print(data)
+                f.write(data + "\n")
             else:
-                print(num1, "/", num2, "=", num)
+                data = str(num1) + " / " + str(num2) + " = " + str(num)
+                print(data)
+                f.write(data + "\n") 
 
+        # check if user wants another calculation
         # break the while loop if answer is no
 
         endIndex = NextCalc ()
@@ -81,4 +105,8 @@ while True:
             break
 
     else:
-        print("Invalid Input")
+        data = "Invalid Input"
+        print(data)
+        f.write(data + "\n")
+
+f.close
