@@ -45,34 +45,39 @@ while True:
 
     # check if choice is one of the four options
     if choice in ('1', '2', '3', '4'):
-        num1 = float(input("Enter first number: "))
-        num2 = float(input("Enter second number: "))
+        try:
+            num1 = float(input("Enter first number: "))
+            num2 = float(input("Enter second number: "))
 
-        if choice == '1':
-            data = str(num1) + " + " + str(num2) + " = " + str(CalcFunc.add(num1, num2))
-            print(data)
-            f.write(data + "\n")
-
-        elif choice == '2':
-            data = str(num1) + " - " + str(num2) + " = " + str(CalcFunc.subtract(num1, num2))
-            print(data)
-            f.write(data + "\n")
-
-        elif choice == '3':
-            data = str(num1) + " * " + str(num2) + " = " + str(CalcFunc.multiply(num1, num2))
-            print(data)
-            f.write(data + "\n")
-
-        elif choice == '4':
-            num = CalcFunc.divide(num1, num2)
-            if not num:
-                data = "Error! Divided by zero!"
+            if choice == '1':
+                data = str(num1) + " + " + str(num2) + " = " + str(CalcFunc.add(num1, num2))
                 print(data)
                 f.write(data + "\n")
-            else:
-                data = str(num1) + " / " + str(num2) + " = " + str(num)
+
+            elif choice == '2':
+                data = str(num1) + " - " + str(num2) + " = " + str(CalcFunc.subtract(num1, num2))
                 print(data)
-                f.write(data + "\n") 
+                f.write(data + "\n")
+
+            elif choice == '3':
+                data = str(num1) + " * " + str(num2) + " = " + str(CalcFunc.multiply(num1, num2))
+                print(data)
+                f.write(data + "\n")
+
+            elif choice == '4':
+                num = CalcFunc.divide(num1, num2)
+                if not num:
+                    data = "Error! Divided by zero!"
+                    print(data)
+                    f.write(data + "\n")
+                else:
+                    data = str(num1) + " / " + str(num2) + " = " + str(num)
+                    print(data)
+                    f.write(data + "\n") 
+        except ValueError:
+            data = "Input only number"
+            print(data)
+            f.write(data + "\n")                
 
         # check if user wants another calculation
         # break the while loop if answer is no
