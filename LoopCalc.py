@@ -19,6 +19,17 @@ def divide (x, y):
     else:
         return x / y
 
+#This function return yes or no input String
+def YesOrNo (str):
+    newStr = str.upper()
+    if(newStr == "YES"):
+        return 0
+    elif(newStr == "NO"):
+        return 1
+    else:
+        print("Input only yes/no")
+        return 2
+
 print("Select operation.")
 print("1.Add")
 print("2.Subtract")
@@ -55,7 +66,7 @@ while True:
         # break the while loop if answer is no
 
         next_calculation = input("Let's do next calculation? (yes/no): ")
-        if next_calculation == "no":
+        if YesOrNo(next_calculation):
             break
 
     else:
