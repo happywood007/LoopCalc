@@ -37,9 +37,20 @@ def NextCalc ():
     if (indexNum == 2):
         return NextCalc ()
     elif indexNum:
-        return 0
+        return ReCheck ()
     else:
         return 1
+
+#This function return ReCheckYes or ReCheckNo
+def ReCheck ():
+    next_calculation = input("Are you sure? (yes/no): ")
+    indexNum = YesOrNo (next_calculation)
+    if (indexNum == 2):
+        return ReCheck ()
+    elif indexNum:
+        return 1
+    else:
+        return 0
 
 
 print("Select operation.")
