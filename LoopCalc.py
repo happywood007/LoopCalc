@@ -1,60 +1,37 @@
 # Program make a simple calculator
 import os
+import CalcFunc
+import EtcFunc
 
 f = open("C:/Users/he981/OneDrive/바탕 화면/2022학년도 2학기/오픈소스소프트웨어개발/중간과제/log/log.txt", 'a')
 
-# This function adds two numbers
-def add(x, y):
-    return x + y
-
-# This function subtracts two numbers
-def subtract(x, y):
-    return x - y
-
-# This function multiplies two numbers
-def multiply(x, y):
-    return x * y
-
-#This function divide two numbers
-def divide (x, y):
-    if(y == 0):
-        return 0
-    else:
-        return x / y
-
-#This function return yes or no input String
-def YesOrNo (str):
-    newStr = str.upper()
-    if(newStr == "YES"):
-        return 0
-    elif(newStr == "NO"):
-        return 1
-    else:
+#This function return NextCalcYes or NextCalcNo
+def NextCalc ():
+    next_calculation = input("Let's do next calculation? (yes/no): ")
+    indexNum = EtcFunc.YesOrNo (next_calculation)
+    if (indexNum == 2):
         data = "Input only yes/no"
         print(data)
         f.write(data + "\n")
-        return 2
-
-def NextCalc ():
-    next_calculation = input("Let's do next calculation? (yes/no): ")
-    indexNum = YesOrNo (next_calculation)
-    if (indexNum == 2):
         return NextCalc ()
     elif indexNum:
         return ReCheck ()
     else:
         return 1
 
+#This function return ReCheckYes or ReCheckNo
 def ReCheck ():
     next_calculation = input("Are you sure? (yes/no): ")
-    indexNum = YesOrNo (next_calculation)
+    indexNum = EtcFunc.YesOrNo (next_calculation)
     if (indexNum == 2):
+        data = "Input only yes/no"
+        print(data)
+        f.write(data + "\n")
         return ReCheck ()
     elif indexNum:
         return 1
     else:
         return 0
-
 
 print("Select operation.")
 print("1.Add")
@@ -72,22 +49,22 @@ while True:
         num2 = float(input("Enter second number: "))
 
         if choice == '1':
-            data = str(num1) + " + " + str(num2) + " = " + str(add(num1, num2))
+            data = str(num1) + " + " + str(num2) + " = " + str(CalcFunc.add(num1, num2))
             print(data)
             f.write(data + "\n")
 
         elif choice == '2':
-            data = str(num1) + " - " + str(num2) + " = " + str(subtract(num1, num2))
+            data = str(num1) + " - " + str(num2) + " = " + str(CalcFunc.subtract(num1, num2))
             print(data)
             f.write(data + "\n")
 
         elif choice == '3':
-            data = str(num1) + " * " + str(num2) + " = " + str(multiply(num1, num2))
+            data = str(num1) + " * " + str(num2) + " = " + str(CalcFunc.multiply(num1, num2))
             print(data)
             f.write(data + "\n")
 
         elif choice == '4':
-            num = divide(num1, num2)
+            num = CalcFunc.divide(num1, num2)
             if not num:
                 data = "Error! Divided by zero!"
                 print(data)
